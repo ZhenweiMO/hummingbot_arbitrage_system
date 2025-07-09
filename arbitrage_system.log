@@ -1,0 +1,295 @@
+2025-07-06 20:49:14,645 - INFO - 启动资金费率套利系统...
+2025-07-06 20:49:14,646 - INFO - 套利引擎已启动
+2025-07-06 20:50:15,750 - ERROR - 获取交易对失败: 405 Client Error: Method Not Allowed for url: https://api.hyperliquid.xyz/info
+2025-07-06 20:50:18,169 - INFO - 未找到合适的套利机会
+2025-07-06 20:51:18,536 - ERROR - 获取交易对失败: 405 Client Error: Method Not Allowed for url: https://api.hyperliquid.xyz/info
+2025-07-06 20:51:21,063 - INFO - 未找到合适的套利机会
+2025-07-06 20:52:21,394 - ERROR - 获取交易对失败: 405 Client Error: Method Not Allowed for url: https://api.hyperliquid.xyz/info
+2025-07-06 20:52:24,007 - INFO - 未找到合适的套利机会
+2025-07-06 20:52:32,659 - INFO - 收到停止信号，正在关闭系统...
+2025-07-06 20:52:32,659 - INFO - 套利引擎已停止
+2025-07-06 21:10:21,349 - INFO - 启动资金费率套利系统...
+2025-07-06 21:10:21,350 - INFO - 套利引擎已启动
+2025-07-06 21:11:24,271 - ERROR - 获取交易对失败: 405 Client Error: Method Not Allowed for url: https://api.hyperliquid.xyz/info
+2025-07-06 21:11:28,290 - INFO - 未找到合适的套利机会
+2025-07-06 21:12:28,796 - ERROR - 获取交易对失败: 405 Client Error: Method Not Allowed for url: https://api.hyperliquid.xyz/info
+2025-07-06 21:12:33,908 - INFO - 未找到合适的套利机会
+2025-07-06 21:13:34,604 - ERROR - 获取交易对失败: 405 Client Error: Method Not Allowed for url: https://api.hyperliquid.xyz/info
+2025-07-06 21:13:41,271 - INFO - 未找到合适的套利机会
+2025-07-06 21:14:41,779 - ERROR - 获取交易对失败: 405 Client Error: Method Not Allowed for url: https://api.hyperliquid.xyz/info
+2025-07-06 21:14:46,848 - INFO - 未找到合适的套利机会
+2025-07-06 21:15:47,359 - ERROR - 获取交易对失败: 405 Client Error: Method Not Allowed for url: https://api.hyperliquid.xyz/info
+2025-07-06 21:15:51,847 - INFO - 未找到合适的套利机会
+2025-07-06 21:16:52,352 - ERROR - 获取交易对失败: 405 Client Error: Method Not Allowed for url: https://api.hyperliquid.xyz/info
+2025-07-06 21:16:55,107 - INFO - 收到停止信号，正在关闭系统...
+2025-07-06 21:16:55,108 - INFO - 套利引擎已停止
+2025-07-06 21:30:23,445 - INFO - 启动资金费率套利系统...
+2025-07-06 21:30:23,446 - INFO - 套利引擎已启动
+2025-07-06 21:31:29,234 - ERROR - 获取交易对失败: 405 Client Error: Method Not Allowed for url: https://api.hyperliquid.xyz/info
+2025-07-06 21:31:36,524 - INFO - 未找到合适的套利机会
+2025-07-06 21:32:37,305 - ERROR - 获取交易对失败: 405 Client Error: Method Not Allowed for url: https://api.hyperliquid.xyz/info
+2025-07-06 21:32:45,598 - INFO - 未找到合适的套利机会
+2025-07-06 21:33:46,886 - ERROR - 获取交易对失败: 405 Client Error: Method Not Allowed for url: https://api.hyperliquid.xyz/info
+2025-07-06 21:33:49,859 - INFO - 未找到合适的套利机会
+2025-07-06 21:34:00,436 - INFO - 收到停止信号，正在关闭系统...
+2025-07-06 21:34:00,436 - INFO - 套利引擎已停止
+2025-07-06 21:41:49,112 - INFO - 启动资金费率套利系统...
+2025-07-06 21:41:49,113 - INFO - 套利引擎已启动
+2025-07-06 21:42:50,270 - INFO - 成功获取到 200 个交易对
+2025-07-06 21:43:48,569 - ERROR - 获取AIXBT资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 21:43:49,706 - ERROR - 获取SPX资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 21:43:54,939 - ERROR - 获取OM资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 21:43:58,175 - ERROR - 获取HYPER资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 21:44:00,536 - ERROR - 获取RESOLV资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 21:44:00,917 - INFO - 找到套利机会: BLAST, 资金费率: -0.000324
+2025-07-06 21:44:01,191 - ERROR - 获取BLAST市场价格失败: 422 Client Error: Unprocessable Entity for url: https://api.hyperliquid.xyz/info
+2025-07-06 21:44:01,192 - ERROR - 获取价格失败
+2025-07-06 21:46:39,825 - INFO - 收到停止信号，正在关闭系统...
+2025-07-06 21:46:39,825 - INFO - 套利引擎已停止
+2025-07-06 21:55:04,782 - INFO - 启动资金费率套利系统...
+2025-07-06 21:55:04,783 - INFO - 套利引擎已启动
+2025-07-06 22:06:05,266 - INFO - 成功获取到 200 个交易对
+2025-07-06 22:06:15,465 - ERROR - 获取NEO资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:15,928 - ERROR - 获取ZEN资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:16,004 - ERROR - 获取FIL资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:16,083 - ERROR - 获取PYTH资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:16,276 - ERROR - 获取SUSHI资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:16,370 - ERROR - 获取ILV资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:16,452 - ERROR - 获取IMX资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:16,592 - ERROR - 获取kBONK资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:16,692 - ERROR - 获取GMT资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:16,811 - ERROR - 获取SUPER资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:17,085 - ERROR - 获取USTC资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:17,171 - ERROR - 获取NFTI资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:17,250 - ERROR - 获取JUP资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:17,444 - ERROR - 获取kLUNC资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:17,516 - ERROR - 获取RSR资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:17,602 - ERROR - 获取GALA资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:17,799 - ERROR - 获取JTO资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:17,924 - ERROR - 获取NTRN资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:18,020 - ERROR - 获取ACE资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:18,097 - ERROR - 获取MAV资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:18,171 - ERROR - 获取WIF资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:18,244 - ERROR - 获取CAKE资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:18,379 - ERROR - 获取PEOPLE资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:18,459 - ERROR - 获取ENS资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:18,593 - ERROR - 获取ETC资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:18,707 - ERROR - 获取XAI资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:18,854 - ERROR - 获取MANTA资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:18,958 - ERROR - 获取UMA资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:19,040 - ERROR - 获取ONDO资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:19,118 - ERROR - 获取ALT资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:19,202 - ERROR - 获取ZETA资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:19,277 - ERROR - 获取DYM资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:19,368 - ERROR - 获取MAVIA资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:19,518 - ERROR - 获取W资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:19,724 - ERROR - 获取PANDORA资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:19,819 - ERROR - 获取STRK资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:19,980 - ERROR - 获取PIXEL资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:20,069 - ERROR - 获取AI资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:20,145 - ERROR - 获取TAO资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:20,235 - ERROR - 获取AR资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:20,310 - ERROR - 获取MYRO资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:20,383 - ERROR - 获取kFLOKI资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:20,601 - ERROR - 获取BOME资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:21,147 - ERROR - 获取ETHFI资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:21,235 - ERROR - 获取ENA资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:21,336 - ERROR - 获取MNT资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:21,438 - ERROR - 获取TNSR资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:21,607 - ERROR - 获取SAGA资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:21,714 - ERROR - 获取MERL资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:21,934 - ERROR - 获取HBAR资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:22,083 - ERROR - 获取POPCAT资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:22,195 - ERROR - 获取OMNI资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:22,381 - ERROR - 获取EIGEN资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:22,472 - ERROR - 获取REZ资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:22,621 - ERROR - 获取NOT资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:22,729 - ERROR - 获取TURBO资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:22,841 - ERROR - 获取BRETT资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:23,006 - ERROR - 获取IO资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:23,278 - ERROR - 获取ZK资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:23,456 - ERROR - 获取BLAST资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:23,570 - ERROR - 获取LISTA资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:23,813 - ERROR - 获取MEW资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:23,985 - ERROR - 获取RENDER资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:24,099 - ERROR - 获取kDOGS资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:24,301 - ERROR - 获取POL资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:24,400 - ERROR - 获取CATI资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:24,495 - ERROR - 获取CELO资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:24,586 - ERROR - 获取HMSTR资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:24,741 - ERROR - 获取SCR资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:24,941 - ERROR - 获取NEIROETH资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:25,059 - ERROR - 获取kNEIRO资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:25,287 - ERROR - 获取GOAT资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:25,422 - ERROR - 获取MOODENG资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:25,945 - ERROR - 获取GRASS资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:26,150 - ERROR - 获取PURR资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:26,338 - ERROR - 获取PNUT资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:26,490 - ERROR - 获取XLM资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:26,611 - ERROR - 获取CHILLGUY资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:26,697 - ERROR - 获取SAND资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:26,807 - ERROR - 获取IOTA资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:26,986 - ERROR - 获取ALGO资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:27,161 - ERROR - 获取HYPE资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:27,258 - ERROR - 获取ME资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:27,437 - ERROR - 获取MOVE资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:27,571 - ERROR - 获取VIRTUAL资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:27,651 - ERROR - 获取PENGU资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:27,737 - ERROR - 获取USUAL资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:27,820 - ERROR - 获取FARTCOIN资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:27,925 - ERROR - 获取AI16Z资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:28,174 - ERROR - 获取AIXBT资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:28,297 - ERROR - 获取ZEREBRO资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:28,503 - ERROR - 获取BIO资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:28,664 - ERROR - 获取GRIFFAIN资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:28,758 - ERROR - 获取SPX资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:28,861 - ERROR - 获取S资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:29,091 - ERROR - 获取MORPHO资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:29,230 - ERROR - 获取TRUMP资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:29,330 - ERROR - 获取MELANIA资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:29,440 - ERROR - 获取ANIME资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:29,658 - ERROR - 获取VINE资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:29,769 - ERROR - 获取VVV资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:29,875 - ERROR - 获取JELLY资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:29,988 - ERROR - 获取BERA资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:30,192 - ERROR - 获取TST资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:30,290 - ERROR - 获取LAYER资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:30,386 - ERROR - 获取IP资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:30,560 - ERROR - 获取OM资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:31,179 - ERROR - 获取KAITO资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:31,411 - ERROR - 获取NIL资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:31,508 - ERROR - 获取PAXG资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:31,644 - ERROR - 获取PROMPT资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:31,825 - ERROR - 获取BABY资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:31,934 - ERROR - 获取WCT资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:32,070 - ERROR - 获取HYPER资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:32,341 - ERROR - 获取ZORA资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:32,450 - ERROR - 获取INIT资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:32,541 - ERROR - 获取DOOD资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:32,629 - ERROR - 获取LAUNCHCOIN资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:32,842 - ERROR - 获取NXPC资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:32,933 - ERROR - 获取SOPH资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:33,033 - ERROR - 获取RESOLV资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:33,243 - ERROR - 获取SYRUP资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:06:33,248 - INFO - 未找到合适的套利机会
+2025-07-06 22:07:33,392 - INFO - 成功获取到 200 个交易对
+2025-07-06 22:07:44,081 - ERROR - 获取ILV资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:44,157 - ERROR - 获取IMX资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:44,345 - ERROR - 获取kBONK资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:44,440 - ERROR - 获取GMT资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:44,622 - ERROR - 获取SUPER资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:44,708 - ERROR - 获取USTC资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:44,870 - ERROR - 获取NFTI资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:44,953 - ERROR - 获取JUP资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:45,034 - ERROR - 获取kLUNC资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:45,110 - ERROR - 获取RSR资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:45,182 - ERROR - 获取GALA资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:45,382 - ERROR - 获取JTO资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:45,456 - ERROR - 获取NTRN资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:45,564 - ERROR - 获取ACE资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:45,644 - ERROR - 获取MAV资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:45,721 - ERROR - 获取WIF资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:45,843 - ERROR - 获取CAKE资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:45,937 - ERROR - 获取PEOPLE资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:46,295 - ERROR - 获取ENS资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:46,452 - ERROR - 获取ETC资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:46,529 - ERROR - 获取XAI资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:46,656 - ERROR - 获取MANTA资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:46,738 - ERROR - 获取UMA资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:46,813 - ERROR - 获取ONDO资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:46,887 - ERROR - 获取ALT资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:47,065 - ERROR - 获取ZETA资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:47,138 - ERROR - 获取DYM资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:47,217 - ERROR - 获取MAVIA资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:47,306 - ERROR - 获取W资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:47,404 - ERROR - 获取PANDORA资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:47,567 - ERROR - 获取STRK资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:47,759 - ERROR - 获取PIXEL资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:47,858 - ERROR - 获取AI资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:47,958 - ERROR - 获取TAO资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:48,084 - ERROR - 获取AR资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:48,169 - ERROR - 获取MYRO资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:48,258 - ERROR - 获取kFLOKI资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:48,349 - ERROR - 获取BOME资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:48,451 - ERROR - 获取ETHFI资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:48,626 - ERROR - 获取ENA资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:48,797 - ERROR - 获取MNT资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:48,888 - ERROR - 获取TNSR资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:48,978 - ERROR - 获取SAGA资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:49,075 - ERROR - 获取MERL资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:49,235 - ERROR - 获取HBAR资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:49,312 - ERROR - 获取POPCAT资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:49,389 - ERROR - 获取OMNI资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:49,464 - ERROR - 获取EIGEN资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:49,553 - ERROR - 获取REZ资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:49,706 - ERROR - 获取NOT资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:49,812 - ERROR - 获取TURBO资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:49,899 - ERROR - 获取BRETT资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:49,981 - ERROR - 获取IO资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:50,063 - ERROR - 获取ZK资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:50,140 - ERROR - 获取BLAST资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:50,295 - ERROR - 获取LISTA资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:50,375 - ERROR - 获取MEW资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:50,449 - ERROR - 获取RENDER资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:50,547 - ERROR - 获取kDOGS资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:50,625 - ERROR - 获取POL资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:50,807 - ERROR - 获取CATI资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:50,885 - ERROR - 获取CELO资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:51,335 - ERROR - 获取HMSTR资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:51,483 - ERROR - 获取SCR资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:51,562 - ERROR - 获取NEIROETH资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:51,635 - ERROR - 获取kNEIRO资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:51,752 - ERROR - 获取GOAT资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:51,924 - ERROR - 获取MOODENG资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:52,001 - ERROR - 获取GRASS资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:52,073 - ERROR - 获取PURR资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:52,171 - ERROR - 获取PNUT资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:52,374 - ERROR - 获取XLM资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:52,453 - ERROR - 获取CHILLGUY资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:52,534 - ERROR - 获取SAND资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:52,622 - ERROR - 获取IOTA资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:52,719 - ERROR - 获取ALGO资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:52,936 - ERROR - 获取HYPE资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:53,035 - ERROR - 获取ME资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:53,112 - ERROR - 获取MOVE资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:53,185 - ERROR - 获取VIRTUAL资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:53,260 - ERROR - 获取PENGU资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:53,403 - ERROR - 获取USUAL资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:53,482 - ERROR - 获取FARTCOIN资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:53,593 - ERROR - 获取AI16Z资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:53,667 - ERROR - 获取AIXBT资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:53,744 - ERROR - 获取ZEREBRO资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:54,007 - ERROR - 获取BIO资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:54,116 - ERROR - 获取GRIFFAIN资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:54,218 - ERROR - 获取SPX资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:54,304 - ERROR - 获取S资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:54,430 - ERROR - 获取MORPHO资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:54,531 - ERROR - 获取TRUMP资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:54,628 - ERROR - 获取MELANIA资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:54,734 - ERROR - 获取ANIME资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:54,819 - ERROR - 获取VINE资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:55,029 - ERROR - 获取VVV资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:55,178 - ERROR - 获取JELLY资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:55,266 - ERROR - 获取BERA资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:55,365 - ERROR - 获取TST资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:55,565 - ERROR - 获取LAYER资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:55,669 - ERROR - 获取IP资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:55,753 - ERROR - 获取OM资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:55,852 - ERROR - 获取KAITO资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:56,036 - ERROR - 获取NIL资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:56,730 - ERROR - 获取PAXG资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:56,872 - ERROR - 获取PROMPT资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:57,159 - ERROR - 获取BABY资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:57,260 - ERROR - 获取WCT资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:57,349 - ERROR - 获取HYPER资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:57,439 - ERROR - 获取ZORA资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:57,573 - ERROR - 获取INIT资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:57,676 - ERROR - 获取DOOD资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:57,767 - ERROR - 获取LAUNCHCOIN资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:57,883 - ERROR - 获取NXPC资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:57,975 - ERROR - 获取SOPH资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:58,240 - ERROR - 获取RESOLV资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:58,343 - ERROR - 获取SYRUP资金费率失败: 429 Client Error: Too Many Requests for url: https://api.hyperliquid.xyz/info
+2025-07-06 22:07:58,347 - INFO - 未找到合适的套利机会
+2025-07-07 00:03:46,004 - INFO - 收到停止信号，正在关闭系统...
+2025-07-07 00:03:46,005 - INFO - 套利引擎已停止
