@@ -1,204 +1,116 @@
 # Hyperliquid资金费率套利系统
 
 ## 项目简介
+本系统为Hyperliquid平台的资金费率套利自动化系统，支持实盘自动下单、实时资金管理、参数合规适配与详细日志追踪。所有资金与仓位均以平台API为准，系统不再本地管理余额，确保安全、透明、自动化。
 
-这是一个完整的Hyperliquid资金费率套利系统，支持自动化交易、实时监控、资金管理和风险控制。
+---
 
-## 核心功能
-
-### 1. 钱包认证系统
-- 支持MetaMask等主流钱包登录
-- 本地加密存储钱包私钥/助记词
-- 自动检测钱包网络连接状态
-- 安全的私钥管理
-
-### 2. 实时数据监控
-- 每分钟扫描所有交易对资金费率
-- 识别负费率且绝对值最低的交易对
-- 获取实时标记价格和深度数据
-- 自动记录历史数据
-
-### 3. 自动化套利引擎
-- 在整点前a秒执行策略
-- 市价开b倍多单(投入c USDT)
-- 整点后a秒市价平仓
-- 自动计算并记录每轮收益
-
-### 4. 资金管理系统
-- 实时监控钱包余额
-- 自动计算可用保证金
-- 记录每次操作后的余额变化
-- 风险控制机制
-
-### 5. 日志与报表系统
-- 详细记录每笔交易参数
-- 生成收益曲线图
-- 输出风险指标分析
-- 数据库存储和查询
-
-## 文件结构
-
+## 目录结构
 ```
 web3_projects/
-├── hyperliquid_system.py      # 主系统文件
-├── wallet_simple.py           # 简化版钱包管理器
-├── requirements.txt           # 依赖包
-├── README.md                  # 项目说明
-├── arbitrage_system.db        # SQLite数据库
-├── arbitrage_system.log       # 系统日志
-└── wallet.json               # 钱包配置
+├── hyperliquid_system.py           # 主系统入口，策略与资金管理
+├── wallet_manager.py               # 钱包连接与签名，集成真实下单API
+├── hyperliquid_api_fixed.py        # Hyperliquid API适配与参数合规
+├── requirements.txt                # 依赖包
+├── setup_wallet.py                 # 钱包配置脚本
+├── wallet.json                     # 钱包配置文件（私钥加密存储）
+├── arbitrage_system.db             # 交易与资金数据库
+├── arbitrage_system.log            # 系统运行日志
+├── README.md                       # 项目说明
 ```
 
-## 安装和配置
+---
 
-### 1. 安装依赖
+## 环境与依赖安装
+建议使用Python 3.10+，推荐虚拟环境隔离依赖：
 ```bash
+python3 -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
 ```
-
-### 2. 配置钱包
-```python
-from wallet_simple import SimpleWalletManager
-
-# 创建钱包管理器
-wallet = SimpleWalletManager()
-
-# 连接钱包（替换为真实地址和私钥）
-address = "0x1234567890123456789012345678901234567890"
-private_key = "your_private_key_here"
-
-if wallet.connect_wallet(address, private_key):
-    print("钱包连接成功")
-    wallet.save_config()  # 保存配置
+依赖包（requirements.txt）：
+```
+requests>=2.31.0
+pandas>=2.0.0
+numpy>=1.24.0
+matplotlib>=3.7.0
+schedule>=1.2.0
+```
+如遇`cryptography`、`web3`等依赖缺失，请手动安装：
+```bash
+pip install cryptography web3 eth-account
 ```
 
-### 3. 运行系统
+---
+
+## 钱包配置与安全说明
+### 1. 推荐方式：脚本配置
+```bash
+python setup_wallet.py
+```
+按提示输入钱包地址与私钥，配置将自动加密保存到wallet.json。
+
+### 2. 手动配置wallet.json
+```json
+{
+  "address": "你的钱包地址",
+  "private_key": "你的私钥"
+}
+```
+
+### 3. 钱包安全建议
+- 私钥仅本地加密存储，严禁泄露
+- 建议专用小额钱包，勿用主钱包
+- 定期备份wallet.json
+- 钱包仅用于签名与身份校验，资金全部以平台API为准
+
+---
+
+## 资金管理与主系统运行
+- 系统启动、每次策略执行前后，均通过API实时查询平台余额与可用保证金，自动记录日志
+- 本地不再维护余额，所有资金以Hyperliquid平台为准
+- 日志详细记录每次资金变动、下单参数、API响应，便于溯源与排查
+
+### 启动主系统
 ```bash
 python hyperliquid_system.py
 ```
 
-## 策略参数配置
+---
 
-在 `hyperliquid_system.py` 中的 `TradingConfig` 类可以调整以下参数：
+## 真实下单接口与参数自动适配
+- 所有下单均通过`wallet_manager.py`的`place_order`方法，调用Hyperliquid官方/exchange接口，EVM私钥签名，支持市价单/限价单
+- 下单参数自动适配：
+  - 启动时拉取所有合约meta，自动对齐minSz、tickSz、最大杠杆
+  - sz（下单数量）= 余额90% × 杠杆 / 当前价格，自动向下取整到tickSz，且不低于minSz
+  - SOPH-PERP等合约参数自动合规，避免422错误
+- 日志输出每次下单payload、参数适配过程、合约meta字典，便于定位问题
 
-```python
-class TradingConfig:
-    leverage = 10                    # 杠杆倍数
-    investment_amount = 100.0        # 投资金额(USDT)
-    pre_execution_seconds = 5        # 整点前执行秒数
-    post_execution_seconds = 5       # 整点后执行秒数
-    min_funding_rate_threshold = -0.0001  # 最小资金费率阈值
-```
+---
 
-## 策略逻辑
-
-### 核心算法
-1. **时间点选择**：每个整点的前一分钟
-2. **交易对选择**：选择资金费率最低的交易对
-3. **入场时机**：整点前5秒
-4. **出场时机**：整点后5秒
-5. **收益计算**：
-   - 价格差 = 买入价格 - 卖出价格
-   - 资金费率收益 = 买入价格 × (资金费率 / 8)
-   - 总收益 = 价格差 + 资金费率收益
-
-### 风险控制
-- 只选择资金费率最低的交易对
-- 严格的时间控制（前后5秒）
-- 资金费率除以8作为收益计算
-- 实时监控钱包余额
-- 自动止损机制
-
-## 系统监控
-
-### 实时监控
-- 系统运行状态
-- 网络连接状态
-- 钱包余额变化
-- 交易执行情况
-
-### 日志记录
-- 详细的交易日志
-- 错误和异常记录
-- 系统性能指标
-- 资金费率变化
-
-## 报表分析
-
-### 性能指标
-- 总交易次数
-- 盈利次数/亏损次数
-- 胜率
-- 总收益/平均收益
-- 最大单次收益/亏损
-- 夏普比率
-- 最大回撤
-
-### 可视化图表
-1. **累计收益曲线** - 显示策略的累计收益变化
-2. **单次收益分布** - 显示单次交易的收益分布
-3. **资金费率变化** - 显示所选交易对的资金费率变化
-4. **交易对选择分布** - 显示不同交易对被选择的频率
-
-## 数据库结构
-
-### trades表（交易记录）
-- id: 主键
-- timestamp: 时间戳
-- datetime: 日期时间
-- trading_pair: 交易对
-- action: 操作类型（open/close）
-- price: 价格
-- amount: 数量
-- leverage: 杠杆
-- funding_rate: 资金费率
-- profit: 收益
-- balance_before: 操作前余额
-- balance_after: 操作后余额
-- status: 状态
-
-### funding_rates表（资金费率记录）
-- id: 主键
-- timestamp: 时间戳
-- datetime: 日期时间
-- trading_pair: 交易对
-- funding_rate: 资金费率
-
-## 安全注意事项
-
-1. **私钥安全**：私钥应妥善保管，不要泄露给他人
-2. **网络安全**：确保网络连接安全，避免中间人攻击
-3. **API限制**：注意API调用频率限制
-4. **资金安全**：建议先使用小额资金测试
-5. **风险控制**：设置合理的止损和仓位管理
-
-## 故障排除
-
-### 常见问题
-1. **网络连接失败**：检查网络连接和API地址
-2. **钱包连接失败**：验证地址和私钥格式
-3. **交易执行失败**：检查余额和权限
-4. **数据获取失败**：检查API状态和参数
-
-### 日志查看
+## 日志与常见问题排查
+- 所有运行、资金、下单、异常均记录于arbitrage_system.log
+- 实时查看日志：
 ```bash
 tail -f arbitrage_system.log
 ```
+- 常见问题：
+  - 钱包连接失败：检查地址/私钥格式与网络
+  - 下单422：检查sz、tickSz、minSz、杠杆参数，查看日志payload与meta
+  - 余额异常：以平台API为准，重启系统同步
 
-## 免责声明
+---
 
-本系统仅用于学习和研究目的，不构成投资建议。实际交易存在风险，请谨慎使用。作者不对使用本系统造成的任何损失承担责任。
+## 免责声明与安全建议
+- 本系统仅供学习与研究，不构成投资建议
+- 实盘交易有风险，建议小额测试，严格风控
+- 私钥安全自负，建议专用钱包
+- 如遇问题请先查阅日志与本说明
 
-## 技术支持
-
-如有问题或建议，请通过以下方式联系：
-- 提交Issue到项目仓库
-- 发送邮件至项目维护者
+---
 
 ## 更新日志
-
-### v1.0.0
-- 初始版本发布
-- 支持基本的资金费率套利策略
-- 包含钱包管理、实时监控、自动化交易功能
-- 完整的日志和报表系统 
+- 资金管理重构：所有余额/保证金实时API同步
+- 集成真实下单接口，参数自动适配平台限制
+- 日志与排查机制完善
+- 钱包配置与安全加固 
