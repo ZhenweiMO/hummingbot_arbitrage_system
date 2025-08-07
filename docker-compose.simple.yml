@@ -1,0 +1,83 @@
+services:
+  # 前端服务
+  frontend:
+    build: ./front_demo
+    container_name: arbitrage-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - arbitrage-network
+    restart: unless-stopped
+
+  # 后端服务（简化版本）
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile.simple
+    container_name: arbitrage-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - backend_data:/app/data
+      - backend_logs:/app/logs
+    environment:
+      - DATABASE_URL=sqlite:///./arbitrage_system.db
+      - HUMMINGBOT_HOST=hummingbot
+      - HUMMINGBOT_PORT=15888
+    depends_on:
+      - hummingbot
+    networks:
+      - arbitrage-network
+    restart: unless-stopped
+
+  # Hummingbot 服务
+  hummingbot:
+    image: hummingbot/hummingbot:latest
+    container_name: arbitrage-hummingbot
+    volumes:
+      - ./hummingbot/conf:/home/hummingbot/conf
+      - ./hummingbot/conf/connectors:/home/hummingbot/conf/connectors
+      - ./hummingbot/conf/strategies:/home/hummingbot/conf/strategies
+      - ./hummingbot/conf/controllers:/home/hummingbot/conf/controllers
+      - ./hummingbot/conf/scripts:/home/hummingbot/conf/scripts
+      - ./hummingbot/logs:/home/hummingbot/logs
+      - ./hummingbot/data:/home/hummingbot/data
+      - ./hummingbot/certs:/home/hummingbot/certs
+      - ./hummingbot/scripts:/home/hummingbot/scripts
+      - ./hummingbot/controllers:/home/hummingbot/controllers
+    environment:
+      - CONFIG_PASSWORD=test1234
+      - CONFIG_FILE_NAME=simple_config.py
+    ports:
+      - "15888:15888"  # Hummingbot API 端口
+      - "8080:8080"    # Gateway 端口
+    networks:
+      - arbitrage-network
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+    command: ["/bin/bash", "-c", "cd /home/hummingbot && source /opt/conda/etc/profile.d/conda.sh && conda activate hummingbot && ./bin/hummingbot_quickstart.py -p test1234"]
+
+  # Redis 服务
+  redis:
+    image: redis:7-alpine
+    container_name: arbitrage-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - arbitrage-network
+    restart: unless-stopped
+
+volumes:
+  backend_data:
+  backend_logs:
+  redis_data:
+
+networks:
+  arbitrage-network:
+    driver: bridge 

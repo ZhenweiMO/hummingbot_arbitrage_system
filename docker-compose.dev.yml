@@ -1,0 +1,40 @@
+services:
+  # 后端服务（本地开发模式）
+  backend:
+    build: ./backend
+    container_name: arbitrage-backend-dev
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - backend_data:/app/data
+      - backend_logs:/app/logs
+    environment:
+      - DATABASE_URL=sqlite:///./arbitrage_system.db
+      - HUMMINGBOT_HOST=localhost
+      - HUMMINGBOT_PORT=15888
+      - DEBUG=true
+    networks:
+      - arbitrage-network
+    restart: unless-stopped
+
+  # Redis 服务
+  redis:
+    image: redis:7-alpine
+    container_name: arbitrage-redis-dev
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - arbitrage-network
+    restart: unless-stopped
+
+volumes:
+  backend_data:
+  backend_logs:
+  redis_data:
+
+networks:
+  arbitrage-network:
+    driver: bridge 
