@@ -28,7 +28,7 @@ def create_password_verification(password: str, output_path: str):
     return True
 
 if __name__ == "__main__":
-    password = "arbitrage123"
+    password = "test1234"
     output_path = "./hummingbot/conf/.password_verification"
     
     print("🔐 创建 Hummingbot 密码验证文件")

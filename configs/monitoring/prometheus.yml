@@ -1,0 +1,37 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+scrape_configs:
+  # Prometheus 自身监控
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # 应用服务监控
+  - job_name: 'arbitrage-backend'
+    static_configs:
+      - targets: ['arbitrage-backend-prod:8000']
+    metrics_path: '/metrics'
+    scrape_interval: 30s
+    scrape_timeout: 10s
+
+  # Redis 监控
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['arbitrage-redis-prod:6379']
+
+  # Nginx 监控
+  - job_name: 'nginx'
+    static_configs:
+      - targets: ['arbitrage-nginx-prod:80']
+
+  # 容器监控
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['cadvisor:8080']
+

@@ -1,0 +1,185 @@
+version: '3.8'
+
+services:
+  # 前端服务 - 生产环境
+  frontend:
+    build:
+      context: ./front_demo
+      dockerfile: Dockerfile
+    container_name: arbitrage-frontend-prod
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - backend
+    networks:
+      - arbitrage-network
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # 后端服务 - 生产环境
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: arbitrage-backend-prod
+    ports:
+      - "8000:8000"
+    volumes:
+      - backend_data_prod:/app/data
+      - backend_logs_prod:/app/logs
+      - backend_config_prod:/app/config
+    environment:
+      - DATABASE_URL=sqlite:///./data/arbitrage_system.db
+      - HUMMINGBOT_HOST=hummingbot
+      - HUMMINGBOT_PORT=15888
+      - ENVIRONMENT=production
+      - LOG_LEVEL=INFO
+      - MAX_WORKERS=4
+      - SECRET_KEY=${SECRET_KEY:-your-secret-key-here}
+    depends_on:
+      - hummingbot
+      - redis
+    networks:
+      - arbitrage-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/overview"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Hummingbot 服务 - 生产环境
+  hummingbot:
+    image: hummingbot/hummingbot:latest
+    container_name: arbitrage-hummingbot-prod
+    volumes:
+      - ./hummingbot/conf:/home/hummingbot/conf:ro
+      - hummingbot_logs_prod:/home/hummingbot/logs
+      - hummingbot_data_prod:/home/hummingbot/data
+      - hummingbot_certs_prod:/home/hummingbot/certs
+    environment:
+      - CONFIG_PASSWORD=${HUMMINGBOT_PASSWORD:-production1234}
+      - CONFIG_FILE_NAME=simple_config.py
+      - ENVIRONMENT=production
+    ports:
+      - "15888:15888"
+      - "8080:8080"
+    networks:
+      - arbitrage-network
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+    command: ["/bin/bash", "-c", "cd /home/hummingbot && source /opt/conda/etc/profile.d/conda.sh && conda activate hummingbot && (python ./bin/hummingbot_quickstart.py -p ${HUMMINGBOT_PASSWORD:-production1234} &) && python ./scripts/rest_shim.py"]
+    healthcheck:
+      test: ["CMD-SHELL", "python -c 'import socket; s=socket.socket(); s.settimeout(5); s.connect((\"localhost\", 15888)); s.close()'"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Redis 服务 - 生产环境
+  redis:
+    image: redis:7-alpine
+    container_name: arbitrage-redis-prod
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data_prod:/data
+      - ./redis.conf:/usr/local/etc/redis/redis.conf:ro
+    command: redis-server /usr/local/etc/redis/redis.conf
+    networks:
+      - arbitrage-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Nginx 反向代理 - 生产环境
+  nginx:
+    image: nginx:alpine
+    container_name: arbitrage-nginx-prod
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - nginx_logs_prod:/var/log/nginx
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - arbitrage-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "nginx", "-t"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # 监控服务 - Prometheus
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: arbitrage-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    networks:
+      - arbitrage-network
+    restart: unless-stopped
+
+  # 日志监控 - Grafana
+  grafana:
+    image: grafana/grafana:latest
+    container_name: arbitrage-grafana
+    ports:
+      - "3001:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources:ro
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin123}
+      - GF_USERS_ALLOW_SIGN_UP=false
+    depends_on:
+      - prometheus
+    networks:
+      - arbitrage-network
+    restart: unless-stopped
+
+volumes:
+  backend_data_prod:
+  backend_logs_prod:
+  backend_config_prod:
+  hummingbot_logs_prod:
+  hummingbot_data_prod:
+  hummingbot_certs_prod:
+  redis_data_prod:
+  nginx_logs_prod:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  arbitrage-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+

@@ -1,0 +1,103 @@
+version: '3.8'
+
+services:
+  # 前端服务 - 生产测试
+  frontend:
+    build:
+      context: ./front_demo
+      dockerfile: Dockerfile
+    container_name: arbitrage-frontend-prod-test
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - arbitrage-network
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # 后端服务 - 生产测试
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.simple
+    container_name: arbitrage-backend-prod-test
+    ports:
+      - "8000:8000"
+    volumes:
+      - backend_data_prod:/app/data
+      - backend_logs_prod:/app/logs
+    environment:
+      - DATABASE_URL=sqlite:///./data/arbitrage_system.db
+      - HUMMINGBOT_HOST=hummingbot
+      - HUMMINGBOT_PORT=15888
+      - ENVIRONMENT=production
+      - LOG_LEVEL=INFO
+    depends_on:
+      - hummingbot
+      - redis
+    networks:
+      - arbitrage-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/api/overview || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Hummingbot 服务 - 生产测试
+  hummingbot:
+    image: hummingbot/hummingbot:latest
+    container_name: arbitrage-hummingbot-prod-test
+    volumes:
+      - ./hummingbot/conf:/home/hummingbot/conf:ro
+      - ./hummingbot/scripts:/home/hummingbot/scripts:ro
+      - hummingbot_logs_prod:/home/hummingbot/logs
+      - hummingbot_data_prod:/home/hummingbot/data
+    environment:
+      - CONFIG_PASSWORD=production1234
+      - CONFIG_FILE_NAME=simple_config.py
+      - ENVIRONMENT=production
+    ports:
+      - "15888:15888"
+      - "8080:8080"
+    networks:
+      - arbitrage-network
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+    command: ["/bin/bash", "-c", "cd /home/hummingbot && source /opt/conda/etc/profile.d/conda.sh && conda activate hummingbot && (python ./bin/hummingbot_quickstart.py -p production1234 &) && python ./scripts/rest_shim.py"]
+
+  # Redis 服务 - 生产测试
+  redis:
+    image: redis:7-alpine
+    container_name: arbitrage-redis-prod-test
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data_prod:/data
+    networks:
+      - arbitrage-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  backend_data_prod:
+  backend_logs_prod:
+  hummingbot_logs_prod:
+  hummingbot_data_prod:
+  redis_data_prod:
+
+networks:
+  arbitrage-network:
+    driver: bridge

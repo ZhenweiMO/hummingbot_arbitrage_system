@@ -101,7 +101,8 @@ class StrategySchema:
                 name="order_refresh_time",
                 type="number",
                 description="订单刷新时间间隔",
-                required=True,
+                required=False,
+                default=60,
                 min_value=1,
                 max_value=3600,
                 unit="秒"
@@ -208,7 +209,8 @@ class StrategySchema:
                 name="order_refresh_time",
                 type="number",
                 description="订单刷新时间间隔",
-                required=True,
+                required=False,
+                default=60,
                 min_value=1,
                 max_value=3600,
                 unit="秒"

@@ -59,7 +59,7 @@ services:
     restart: unless-stopped
     tty: true
     stdin_open: true
-    command: ["/bin/bash", "-c", "cd /home/hummingbot && source /opt/conda/etc/profile.d/conda.sh && conda activate hummingbot && ./bin/hummingbot_quickstart.py -p test1234"]
+    command: ["/bin/bash", "-c", "cd /home/hummingbot && source /opt/conda/etc/profile.d/conda.sh && conda activate hummingbot && (python ./bin/hummingbot_quickstart.py -p test1234 &) && python ./scripts/rest_shim.py"]
 
   # Redis 服务
   redis:
