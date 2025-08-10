@@ -7,7 +7,7 @@ WORKDIR /app
 COPY requirements.txt .
 
 # 安装 Python 依赖（只安装不需要编译的包）
-RUN pip install --no-cache-dir fastapi uvicorn sqlalchemy alembic pydantic python-multipart requests aiofiles python-dotenv
+RUN pip install --no-cache-dir fastapi uvicorn sqlalchemy alembic pydantic python-multipart requests aiofiles python-dotenv aiohttp cryptography
 
 # 复制应用代码
 COPY . .

@@ -130,8 +130,17 @@ async def get_hummingbot_strategy_status(strategy_id: str):
 
 # 账户相关接口
 @app.get('/api/accounts', response_model=List[schemas.Account])
-def get_accounts(db: Session = Depends(get_db)):
-    return crud.get_accounts(db)
+async def get_accounts(db: Session = Depends(get_db)):
+    return await crud.get_accounts_with_real_time_balance(db)
+
+@app.post('/api/accounts/{account_id}/update-balance')
+async def update_account_balance(account_id: int, db: Session = Depends(get_db)):
+    """手动更新指定账户的实时余额"""
+    account = await crud.update_account_balance(db, account_id)
+    if account:
+        return {"message": "余额更新成功", "account": account}
+    else:
+        raise HTTPException(status_code=404, detail="账户不存在或更新失败")
 
 @app.post('/api/accounts', response_model=schemas.Account)
 def create_account(account: schemas.AccountCreate, db: Session = Depends(get_db)):

@@ -28,8 +28,10 @@ class Strategy(StrategyBase):
 # Account schemas
 class AccountBase(BaseModel):
     name: str
+    exchange_type: str
     api_key: str
     api_secret: Optional[str] = None
+    passphrase: Optional[str] = None
     balance: float = 0.0
     position: Optional[str] = None
 
@@ -38,8 +40,10 @@ class AccountCreate(AccountBase):
 
 class AccountUpdate(BaseModel):
     name: Optional[str] = None
+    exchange_type: Optional[str] = None
     api_key: Optional[str] = None
     api_secret: Optional[str] = None
+    passphrase: Optional[str] = None
     balance: Optional[float] = None
     position: Optional[str] = None
     is_active: Optional[bool] = None

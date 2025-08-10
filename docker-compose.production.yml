@@ -6,10 +6,12 @@ services:
     build:
       context: ./front_demo
       dockerfile: Dockerfile
+      args:
+        REACT_APP_API_BASE_URL: http://localhost:9091/api
     container_name: arbitrage-frontend-prod
     ports:
-      - "80:80"
-      - "443:443"
+      - "9091:80"
+      - "9443:443"
     depends_on:
       - backend
     networks:
@@ -17,6 +19,7 @@ services:
     restart: unless-stopped
     environment:
       - NODE_ENV=production
+      - REACT_APP_API_BASE_URL=http://localhost:8001/api
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost"]
       interval: 30s
@@ -27,10 +30,10 @@ services:
   backend:
     build:
       context: ./backend
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.simple
     container_name: arbitrage-backend-prod
     ports:
-      - "8000:8000"
+      - "8001:8000"
     volumes:
       - backend_data_prod:/app/data
       - backend_logs_prod:/app/logs
@@ -61,6 +64,7 @@ services:
     container_name: arbitrage-hummingbot-prod
     volumes:
       - ./hummingbot/conf:/home/hummingbot/conf:ro
+      - ./hummingbot/scripts:/home/hummingbot/scripts:ro
       - hummingbot_logs_prod:/home/hummingbot/logs
       - hummingbot_data_prod:/home/hummingbot/data
       - hummingbot_certs_prod:/home/hummingbot/certs
@@ -69,8 +73,8 @@ services:
       - CONFIG_FILE_NAME=simple_config.py
       - ENVIRONMENT=production
     ports:
-      - "15888:15888"
-      - "8080:8080"
+      - "15889:15888"
+      - "9092:8080"
     networks:
       - arbitrage-network
     restart: unless-stopped
@@ -88,10 +92,10 @@ services:
     image: redis:7-alpine
     container_name: arbitrage-redis-prod
     ports:
-      - "6379:6379"
+      - "6380:6379"
     volumes:
       - redis_data_prod:/data
-      - ./redis.conf:/usr/local/etc/redis/redis.conf:ro
+      - ./configs/redis.conf:/usr/local/etc/redis/redis.conf:ro
     command: redis-server /usr/local/etc/redis/redis.conf
     networks:
       - arbitrage-network
@@ -110,8 +114,8 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - ./configs/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./configs/nginx/ssl:/etc/nginx/ssl:ro
       - nginx_logs_prod:/var/log/nginx
     depends_on:
       - frontend
@@ -132,7 +136,7 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./configs/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
@@ -153,8 +157,8 @@ services:
       - "3001:3000"
     volumes:
       - grafana_data:/var/lib/grafana
-      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
-      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources:ro
+      - ./configs/monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./configs/monitoring/grafana/datasources:/etc/grafana/provisioning/datasources:ro
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin123}
       - GF_USERS_ALLOW_SIGN_UP=false

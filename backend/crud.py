@@ -1,7 +1,11 @@
 from sqlalchemy.orm import Session
-from sqlalchemy import desc
+from sqlalchemy import desc, func
 from typing import List, Optional
+import asyncio
+import logging
 import models, schemas
+
+logger = logging.getLogger(__name__)
 
 # Strategy CRUD operations
 def get_strategies(db: Session, skip: int = 0, limit: int = 100) -> List[models.Strategy]:
@@ -56,6 +60,68 @@ def create_account(db: Session, account: schemas.AccountCreate) -> models.Accoun
     db.commit()
     db.refresh(db_account)
     return db_account
+
+async def update_account_balance(db: Session, account_id: int) -> Optional[models.Account]:
+    """更新账户实时余额"""
+    from exchange_connector import exchange_manager, create_connector
+    
+    db_account = get_account(db, account_id)
+    if not db_account or not db_account.is_active:
+        return None
+    
+    try:
+        # 创建交易所连接器
+        connector = create_connector(
+            exchange_type=db_account.exchange_type,
+            api_key=db_account.api_key,
+            api_secret=db_account.api_secret,
+            passphrase=db_account.passphrase
+        )
+        
+        # 获取实时余额
+        async with connector:
+            account_info = await connector.get_account_balance()
+            
+        if account_info:
+            # 更新数据库中的余额信息
+            db_account.real_time_balance = {
+                'total_equity': account_info.total_equity,
+                'balances': [
+                    {
+                        'asset': b.asset,
+                        'free': b.free,
+                        'locked': b.locked,
+                        'total': b.total
+                    } for b in account_info.balances
+                ],
+                'timestamp': account_info.timestamp
+            }
+            db_account.balance = account_info.total_equity
+            db_account.last_balance_update = func.now()
+            
+            db.commit()
+            db.refresh(db_account)
+            
+        return db_account
+        
+    except Exception as e:
+        logger.error(f"更新账户 {account_id} 余额失败: {e}")
+        return None
+
+async def get_accounts_with_real_time_balance(db: Session, skip: int = 0, limit: int = 100) -> List[models.Account]:
+    """获取账户列表并更新实时余额"""
+    accounts = get_accounts(db, skip, limit)
+    
+    # 异步更新所有账户的余额
+    update_tasks = []
+    for account in accounts:
+        if account.is_active:
+            update_tasks.append(update_account_balance(db, account.id))
+    
+    if update_tasks:
+        await asyncio.gather(*update_tasks, return_exceptions=True)
+    
+    return get_accounts(db, skip, limit)
 
 def update_account(db: Session, account_id: int, account: schemas.AccountUpdate) -> Optional[models.Account]:
     db_account = get_account(db, account_id)

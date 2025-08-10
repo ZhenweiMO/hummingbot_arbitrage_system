@@ -30,22 +30,28 @@ def init_db():
 
         existing_accounts = crud.get_accounts(db)
         if not existing_accounts:
-            # 创建示例账户
+            # 创建示例账户（需要用户配置真实的 API 密钥）
             account1 = schemas.AccountCreate(
                 name="Binance",
-                api_key="****1234",
-                balance=10000.0,
-                position="BTC: 0.5"
+                exchange_type="binance",
+                api_key="your_binance_api_key_here",  # 需要用户替换为真实的 API 密钥
+                api_secret="your_binance_api_secret_here",
+                balance=0.0,  # 初始为0，将通过 API 获取真实余额
+                position=""
             )
             account2 = schemas.AccountCreate(
                 name="OKX",
-                api_key="****5678", 
-                balance=8000.0,
-                position="ETH: 2"
+                exchange_type="okx", 
+                api_key="your_okx_api_key_here",  # 需要用户替换为真实的 API 密钥
+                api_secret="your_okx_api_secret_here",
+                passphrase="your_okx_passphrase_here",
+                balance=0.0,  # 初始为0，将通过 API 获取真实余额
+                position=""
             )
             crud.create_account(db, account1)
             crud.create_account(db, account2)
             print("✅ 示例账户已创建")
+            print("⚠️  请配置真实的交易所 API 密钥以获取实时余额")
 
         # 创建示例日志
         log1 = schemas.LogCreate(

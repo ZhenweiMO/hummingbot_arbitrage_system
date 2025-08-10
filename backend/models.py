@@ -18,9 +18,13 @@ class Account(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(100), nullable=False)  # 交易所名称
+    exchange_type = Column(String(50), nullable=False)  # 交易所类型：binance, okx, bybit等
     api_key = Column(String(255), nullable=False)  # API Key
-    api_secret = Column(String(255), nullable=True)  # API Secret（可选）
-    balance = Column(Float, default=0.0)  # 账户余额
+    api_secret = Column(String(255), nullable=True)  # API Secret
+    passphrase = Column(String(255), nullable=True)  # API Passphrase（OKX等需要）
+    balance = Column(Float, default=0.0)  # 账户余额（缓存值）
+    real_time_balance = Column(JSON)  # 实时余额信息
+    last_balance_update = Column(DateTime(timezone=True))  # 最后余额更新时间
     position = Column(Text)  # 持仓信息
     is_active = Column(Boolean, default=True)  # 是否激活
     created_at = Column(DateTime(timezone=True), server_default=func.now())

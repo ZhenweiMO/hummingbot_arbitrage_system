@@ -13,6 +13,10 @@ RUN npm ci --only=production
 # 复制源代码
 COPY . .
 
+# 设置构建时环境变量
+ARG REACT_APP_API_BASE_URL
+ENV REACT_APP_API_BASE_URL=${REACT_APP_API_BASE_URL:-http://localhost:8000/api}
+
 # 构建应用
 RUN npm run build
 
