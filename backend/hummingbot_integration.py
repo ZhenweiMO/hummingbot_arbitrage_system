@@ -282,6 +282,157 @@ class StrategySchema:
                 default=True
             )
         }
+
+    @staticmethod
+    def get_amm_arbitrage_schema() -> Dict[str, StrategyParameter]:
+        """获取 AMM 套利策略参数模式"""
+        return {
+            "amm_connector": StrategyParameter(
+                name="amm_connector",
+                type="select",
+                description="AMM 连接器",
+                required=True,
+                options=["uniswap_v3", "pancakeswap", "sushiswap", "curve"]
+            ),
+            "exchange_connector": StrategyParameter(
+                name="exchange_connector",
+                type="select",
+                description="交易所连接器",
+                required=True,
+                options=["binance", "okx", "bybit", "gate_io", "kucoin"]
+            ),
+            "market": StrategyParameter(
+                name="market",
+                type="string",
+                description="交易对 (如: ETH-USDT)",
+                required=True
+            ),
+            "min_profitability": StrategyParameter(
+                name="min_profitability",
+                type="number",
+                description="最小盈利百分比",
+                required=True,
+                min_value=0.1,
+                max_value=50,
+                unit="%"
+            ),
+            "order_amount": StrategyParameter(
+                name="order_amount",
+                type="number",
+                description="订单数量",
+                required=True,
+                min_value=0.001,
+                unit="base_asset"
+            ),
+            "gas_limit": StrategyParameter(
+                name="gas_limit",
+                type="number",
+                description="Gas 限制",
+                required=False,
+                min_value=21000,
+                max_value=1000000,
+                default=300000
+            ),
+            "gas_price": StrategyParameter(
+                name="gas_price",
+                type="number",
+                description="Gas 价格 (Gwei)",
+                required=False,
+                min_value=1,
+                max_value=1000,
+                default=50
+            ),
+            "slippage_tolerance": StrategyParameter(
+                name="slippage_tolerance",
+                type="number",
+                description="滑点容忍度",
+                required=False,
+                min_value=0.01,
+                max_value=10,
+                default=1.0,
+                unit="%"
+            )
+        }
+
+    @staticmethod
+    def get_spot_perpetual_arbitrage_schema() -> Dict[str, StrategyParameter]:
+        """获取现货永续套利策略参数模式"""
+        return {
+            "spot_connector": StrategyParameter(
+                name="spot_connector",
+                type="select",
+                description="现货交易所",
+                required=True,
+                options=["binance", "okx", "bybit", "gate_io", "kucoin"]
+            ),
+            "perpetual_connector": StrategyParameter(
+                name="perpetual_connector",
+                type="select",
+                description="永续合约交易所",
+                required=True,
+                options=["binance_perpetual", "okx_perpetual", "bybit_perpetual", "gate_io_perpetual"]
+            ),
+            "market": StrategyParameter(
+                name="market",
+                type="string",
+                description="交易对 (如: BTC-USDT)",
+                required=True
+            ),
+            "min_profitability": StrategyParameter(
+                name="min_profitability",
+                type="number",
+                description="最小盈利百分比",
+                required=True,
+                min_value=0.01,
+                max_value=20,
+                unit="%"
+            ),
+            "order_amount": StrategyParameter(
+                name="order_amount",
+                type="number",
+                description="订单数量",
+                required=True,
+                min_value=0.001,
+                unit="base_asset"
+            ),
+            "leverage": StrategyParameter(
+                name="leverage",
+                type="number",
+                description="永续合约杠杆",
+                required=False,
+                min_value=1,
+                max_value=100,
+                default=1
+            ),
+            "funding_rate_threshold": StrategyParameter(
+                name="funding_rate_threshold",
+                type="number",
+                description="资金费率阈值",
+                required=False,
+                min_value=-0.1,
+                max_value=0.1,
+                default=0.001,
+                unit="%"
+            ),
+            "hedge_ratio": StrategyParameter(
+                name="hedge_ratio",
+                type="number",
+                description="对冲比例",
+                required=False,
+                min_value=0.1,
+                max_value=2.0,
+                default=1.0
+            ),
+            "max_position_size": StrategyParameter(
+                name="max_position_size",
+                type="number",
+                description="最大持仓规模",
+                required=False,
+                min_value=0.001,
+                default=1.0,
+                unit="base_asset"
+            )
+        }
     
     @staticmethod
     def get_strategy_schema(strategy_type: str) -> Dict[str, StrategyParameter]:
@@ -290,6 +441,8 @@ class StrategySchema:
             StrategyType.PURE_MARKET_MAKING.value: StrategySchema.get_pure_market_making_schema,
             StrategyType.AVELLANEDA_MARKET_MAKING.value: StrategySchema.get_avellaneda_market_making_schema,
             StrategyType.CROSS_EXCHANGE_MARKET_MAKING.value: StrategySchema.get_cross_exchange_arbitrage_schema,
+            StrategyType.AMM_ARB.value: StrategySchema.get_amm_arbitrage_schema,
+            StrategyType.SPOT_PERPETUAL_ARBITRAGE.value: StrategySchema.get_spot_perpetual_arbitrage_schema,
         }
         
         if strategy_type in schema_map:
