@@ -28,13 +28,15 @@ const AccountForm: React.FC<AccountFormProps> = ({ account, onSuccess, onCancel 
         await updateAccount(account.id, { ...values, id: account.id });
         message.success('账户更新成功');
       } else {
-        // 新增模式
-        await createAccount({ ...values, id: Date.now() }); // Temporary client-side ID
+        // 新增模式 - 移除余额和持仓字段，由系统自动处理
+        const { balance, position, ...accountData } = values;
+        await createAccount(accountData);
         message.success('账户创建成功');
       }
       onSuccess();
-    } catch (error) {
-      message.error('操作失败');
+    } catch (error: any) {
+      console.error('账户操作失败:', error);
+      message.error('操作失败: ' + (error.response?.data?.detail || error.message || '未知错误'));
     } finally {
       setLoading(false);
     }
