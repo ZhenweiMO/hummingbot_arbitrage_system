@@ -32,8 +32,8 @@ class AccountBase(BaseModel):
     api_key: str
     api_secret: Optional[str] = None
     passphrase: Optional[str] = None
-    balance: float = 0.0
-    position: Optional[str] = None
+    balance: Optional[float] = None  # 新建时可选，由系统自动获取
+    position: Optional[str] = None   # 新建时可选，由系统自动获取
 
 class AccountCreate(AccountBase):
     pass

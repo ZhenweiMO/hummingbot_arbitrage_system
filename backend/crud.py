@@ -54,11 +54,25 @@ def get_accounts(db: Session, skip: int = 0, limit: int = 100) -> List[models.Ac
 def get_account(db: Session, account_id: int) -> Optional[models.Account]:
     return db.query(models.Account).filter(models.Account.id == account_id).first()
 
-def create_account(db: Session, account: schemas.AccountCreate) -> models.Account:
-    db_account = models.Account(**account.dict())
+async def create_account(db: Session, account: schemas.AccountCreate) -> models.Account:
+    """创建账户并自动获取余额"""
+    # 创建账户记录，不包含余额和持仓信息
+    account_data = account.dict()
+    account_data.pop('balance', None)  # 移除余额，由系统自动获取
+    account_data.pop('position', None)  # 移除持仓，由系统自动获取
+    
+    db_account = models.Account(**account_data)
     db.add(db_account)
     db.commit()
     db.refresh(db_account)
+    
+    # 异步获取实时余额
+    try:
+        await update_account_balance(db, db_account.id)
+    except Exception as e:
+        logger.warning(f"创建账户后获取余额失败: {e}")
+        # 即使获取余额失败，账户创建仍然成功
+    
     return db_account
 
 async def update_account_balance(db: Session, account_id: int) -> Optional[models.Account]:

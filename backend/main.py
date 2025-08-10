@@ -144,8 +144,8 @@ async def update_account_balance(account_id: int, db: Session = Depends(get_db))
         raise HTTPException(status_code=404, detail="账户不存在或更新失败")
 
 @app.post('/api/accounts', response_model=schemas.Account)
-def create_account(account: schemas.AccountCreate, db: Session = Depends(get_db)):
-    return crud.create_account(db=db, account=account)
+async def create_account(account: schemas.AccountCreate, db: Session = Depends(get_db)):
+    return await crud.create_account(db=db, account=account)
 
 @app.put('/api/accounts/{account_id}', response_model=schemas.Account)
 def update_account(account_id: int, account: schemas.AccountUpdate, db: Session = Depends(get_db)):
