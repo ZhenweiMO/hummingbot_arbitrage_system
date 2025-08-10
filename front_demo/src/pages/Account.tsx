@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Button, Modal, message, Popconfirm, Alert, Spin } from 'antd';
+import { Table, Button, Modal, message, Popconfirm, Alert, Spin, Empty, Typography, Card, Row, Col } from 'antd';
+import { PlusOutlined, SettingOutlined } from '@ant-design/icons';
 import { getAccounts, deleteAccount } from '../api/account';
 import AccountForm from '../components/AccountForm';
 import { maskApiKey } from '../utils/maskUtils';
+
+const { Title, Paragraph, Text } = Typography;
 
 const Account: React.FC = () => {
   const [accounts, setAccounts] = useState<any[]>([]);
@@ -108,6 +111,7 @@ const Account: React.FC = () => {
     <div>
       <Button 
         type="primary" 
+        icon={<PlusOutlined />}
         onClick={() => { 
           setEditingAccount(null); 
           setModalVisible(true); 
@@ -117,7 +121,57 @@ const Account: React.FC = () => {
         新增账户
       </Button>
       <Spin spinning={loading}>
-        <Table columns={columns} dataSource={accounts} rowKey="id" />
+        {accounts.length === 0 && !loading ? (
+          <Card>
+            <Empty
+              image={Empty.PRESENTED_IMAGE_SIMPLE}
+              description={
+                <div>
+                  <Title level={4}>还没有添加任何交易所账户</Title>
+                  <Paragraph style={{ color: '#666', marginBottom: 24 }}>
+                    添加您的交易所 API 密钥以获取实时余额和进行交易
+                  </Paragraph>
+                  <Row gutter={16} justify="center">
+                    <Col>
+                      <Card 
+                        size="small" 
+                        style={{ width: 200, textAlign: 'center' }}
+                        hoverable
+                        onClick={() => { setEditingAccount(null); setModalVisible(true); }}
+                      >
+                        <SettingOutlined style={{ fontSize: 32, color: '#1890ff', marginBottom: 16 }} />
+                        <Title level={4}>添加账户</Title>
+                        <Text type="secondary">配置交易所 API 密钥</Text>
+                      </Card>
+                    </Col>
+                  </Row>
+                  <div style={{ marginTop: 24, padding: 16, backgroundColor: '#f5f5f5', borderRadius: 6 }}>
+                    <Title level={5}>支持的交易所</Title>
+                    <Row gutter={16}>
+                      <Col span={8}>
+                        <Text strong>Binance</Text>
+                        <br />
+                        <Text type="secondary">全球最大的加密货币交易所</Text>
+                      </Col>
+                      <Col span={8}>
+                        <Text strong>OKX</Text>
+                        <br />
+                        <Text type="secondary">专业的数字资产交易平台</Text>
+                      </Col>
+                      <Col span={8}>
+                        <Text strong>更多交易所</Text>
+                        <br />
+                        <Text type="secondary">持续添加更多交易所支持</Text>
+                      </Col>
+                    </Row>
+                  </div>
+                </div>
+              }
+            />
+          </Card>
+        ) : (
+          <Table columns={columns} dataSource={accounts} rowKey="id" />
+        )}
       </Spin>
       <Modal
         open={modalVisible}

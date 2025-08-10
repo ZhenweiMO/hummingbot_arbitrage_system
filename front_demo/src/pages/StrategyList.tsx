@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Button, Modal, message, Alert, Spin, Tag, Card, Row, Col } from 'antd';
+import { Table, Button, Modal, message, Alert, Spin, Tag, Card, Row, Col, Empty, Typography } from 'antd';
+import { PlusOutlined, PlayCircleOutlined } from '@ant-design/icons';
 import { getStrategies, startStrategy, stopStrategy, deleteStrategy } from '../api/strategy';
 import StrategyForm from '../components/StrategyForm';
 import { maskApiKey } from '../utils/maskUtils';
+
+const { Title, Paragraph, Text } = Typography;
 
 const StrategyList: React.FC = () => {
   const [strategies, setStrategies] = useState<any[]>([]);
@@ -198,6 +201,7 @@ const StrategyList: React.FC = () => {
           <Card size="small">
             <Button 
               type="primary" 
+              icon={<PlusOutlined />}
               onClick={() => { setEditingStrategy(null); setModalVisible(true); }}
             >
               新建策略
@@ -210,17 +214,59 @@ const StrategyList: React.FC = () => {
       </Row>
       
       <Spin spinning={loading}>
-        <Table 
-          columns={columns} 
-          dataSource={strategies} 
-          rowKey="id"
-          pagination={{
-            pageSize: 10,
-            showSizeChanger: true,
-            showQuickJumper: true,
-            showTotal: (total, range) => `第 ${range[0]}-${range[1]} 条，共 ${total} 条`
-          }}
-        />
+        {strategies.length === 0 && !loading ? (
+          <Card>
+            <Empty
+              image={Empty.PRESENTED_IMAGE_SIMPLE}
+              description={
+                <div>
+                  <Title level={4}>还没有创建任何策略</Title>
+                  <Paragraph style={{ color: '#666', marginBottom: 24 }}>
+                    开始创建您的第一个套利策略，系统支持多种策略类型
+                  </Paragraph>
+                  <Row gutter={16} justify="center">
+                    <Col>
+                      <Card 
+                        size="small" 
+                        style={{ width: 200, textAlign: 'center' }}
+                        hoverable
+                        onClick={() => { setEditingStrategy(null); setModalVisible(true); }}
+                      >
+                        <PlusOutlined style={{ fontSize: 32, color: '#52c41a', marginBottom: 16 }} />
+                        <Title level={4}>创建策略</Title>
+                        <Text type="secondary">选择策略类型并配置参数</Text>
+                      </Card>
+                    </Col>
+                    <Col>
+                      <Card 
+                        size="small" 
+                        style={{ width: 200, textAlign: 'center' }}
+                        hoverable
+                        onClick={() => window.location.href = '/hummingbot-test'}
+                      >
+                        <PlayCircleOutlined style={{ fontSize: 32, color: '#722ed1', marginBottom: 16 }} />
+                        <Title level={4}>查看策略类型</Title>
+                        <Text type="secondary">了解所有可用的策略类型</Text>
+                      </Card>
+                    </Col>
+                  </Row>
+                </div>
+              }
+            />
+          </Card>
+        ) : (
+          <Table 
+            columns={columns} 
+            dataSource={strategies} 
+            rowKey="id"
+            pagination={{
+              pageSize: 10,
+              showSizeChanger: true,
+              showQuickJumper: true,
+              showTotal: (total, range) => `第 ${range[0]}-${range[1]} 条，共 ${total} 条`
+            }}
+          />
+        )}
       </Spin>
       
       <Modal

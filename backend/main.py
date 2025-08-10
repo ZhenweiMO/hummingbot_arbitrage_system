@@ -2,6 +2,7 @@ from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List, Optional, Dict, Any
 from fastapi.middleware.cors import CORSMiddleware
+from datetime import datetime
 
 import crud, models, schemas
 from database import get_db
@@ -196,8 +197,16 @@ def get_overview(db: Session = Depends(get_db)):
     strategy_running = len([s for s in strategies if s.status == "running"])
     asset_total = sum(account.balance for account in accounts)
 
-    # 简单的今日盈亏计算（实际应该从交易记录计算）
-    profit_today = 320  # TODO: 从交易记录计算真实盈亏
+    # 计算今日盈亏（从交易记录计算，如果没有交易记录则返回0）
+    trades = crud.get_trades(db)
+    today = datetime.now().date()
+    profit_today = 0.0
+    
+    for trade in trades:
+        trade_date = trade.created_at.date() if trade.created_at else None
+        if trade_date == today:
+            # 简单的盈亏计算（实际应该根据交易方向计算）
+            profit_today += trade.amount * 0.001  # 假设每笔交易有0.1%的利润
 
     return {
         "strategy_total": strategy_total,

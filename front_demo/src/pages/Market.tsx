@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Select, Row, Col, Alert, Spin, Button } from 'antd';
+import { Card, Select, Row, Col, Alert, Spin, Button, Empty, Typography } from 'antd';
 import ReactECharts from 'echarts-for-react';
 import { getSymbols, getKline, getOrderBook } from '../api/market';
+
+const { Title, Paragraph, Text } = Typography;
 
 const { Option } = Select;
 
@@ -91,30 +93,64 @@ const Market: React.FC = () => {
   return (
     <Spin spinning={loading}>
       <div>
-        <Row gutter={16}>
-          <Col span={6}>
-            <Card title="交易对选择">
-              <Select value={symbol} onChange={setSymbol} style={{ width: '100%' }}>
-                {symbols.map(s => <Option key={s} value={s}>{s}</Option>)}
-              </Select>
-            </Card>
-            <Card title="订单簿深度" style={{ marginTop: 16 }}>
-              <div>买盘：</div>
-              {orderBookData.bids.map(([price, amount]: [number, number], idx: number) => (
-                <div key={idx}>价格: {price} 数量: {amount}</div>
-              ))}
-              <div>卖盘：</div>
-              {orderBookData.asks.map(([price, amount]: [number, number], idx: number) => (
-                <div key={idx}>价格: {price} 数量: {amount}</div>
-              ))}
-            </Card>
-          </Col>
-          <Col span={18}>
-            <Card title="K线图">
-              <ReactECharts option={klineOption} style={{ height: 400 }} />
-            </Card>
-          </Col>
-        </Row>
+        {symbols.length === 0 ? (
+          <Card>
+            <Empty
+              image={Empty.PRESENTED_IMAGE_SIMPLE}
+              description={
+                <div>
+                  <Title level={4}>暂无市场数据</Title>
+                  <Paragraph style={{ color: '#666' }}>
+                    系统正在连接市场数据源，请稍后再试
+                  </Paragraph>
+                </div>
+              }
+            />
+          </Card>
+        ) : (
+          <Row gutter={16}>
+            <Col span={6}>
+              <Card title="交易对选择">
+                <Select value={symbol} onChange={setSymbol} style={{ width: '100%' }}>
+                  {symbols.map(s => <Option key={s} value={s}>{s}</Option>)}
+                </Select>
+              </Card>
+              <Card title="订单簿深度" style={{ marginTop: 16 }}>
+                {orderBookData.bids.length === 0 ? (
+                  <Empty
+                    image={Empty.PRESENTED_IMAGE_SIMPLE}
+                    description="暂无订单簿数据"
+                    imageStyle={{ height: 60 }}
+                  />
+                ) : (
+                  <>
+                    <div>买盘：</div>
+                    {orderBookData.bids.map(([price, amount]: [number, number], idx: number) => (
+                      <div key={idx}>价格: {price} 数量: {amount}</div>
+                    ))}
+                    <div>卖盘：</div>
+                    {orderBookData.asks.map(([price, amount]: [number, number], idx: number) => (
+                      <div key={idx}>价格: {price} 数量: {amount}</div>
+                    ))}
+                  </>
+                )}
+              </Card>
+            </Col>
+            <Col span={18}>
+              <Card title="K线图">
+                {klineData.length === 0 ? (
+                  <Empty
+                    image={Empty.PRESENTED_IMAGE_SIMPLE}
+                    description="暂无K线数据"
+                    imageStyle={{ height: 200 }}
+                  />
+                ) : (
+                  <ReactECharts option={klineOption} style={{ height: 400 }} />
+                )}
+              </Card>
+            </Col>
+          </Row>
+        )}
       </div>
     </Spin>
   );

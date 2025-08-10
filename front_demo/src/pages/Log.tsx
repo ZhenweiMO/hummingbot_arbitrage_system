@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Tabs, Alert, Spin, Button } from 'antd';
+import { Table, Tabs, Alert, Spin, Button, Empty, Typography, Card } from 'antd';
 import { getLogs, getTrades } from '../api/log';
+
+const { Title, Paragraph, Text } = Typography;
 
 const Log: React.FC = () => {
   const [logs, setLogs] = useState<any[]>([]);
@@ -52,28 +54,60 @@ const Log: React.FC = () => {
     <Spin spinning={loading}>
       <Tabs defaultActiveKey="log">
         <Tabs.TabPane tab="运行日志" key="log">
-          <Table
-            columns={[
-              { title: '时间', dataIndex: 'created_at', render: (time: string) => new Date(time).toLocaleString() },
-              { title: '级别', dataIndex: 'level' },
-              { title: '内容', dataIndex: 'message' },
-            ]}
-            dataSource={logs}
-            rowKey="id"
-          />
+          {logs.length === 0 ? (
+            <Card>
+              <Empty
+                image={Empty.PRESENTED_IMAGE_SIMPLE}
+                description={
+                  <div>
+                    <Title level={4}>暂无运行日志</Title>
+                    <Paragraph style={{ color: '#666' }}>
+                      当您启动策略后，系统将自动记录运行日志
+                    </Paragraph>
+                  </div>
+                }
+              />
+            </Card>
+          ) : (
+            <Table
+              columns={[
+                { title: '时间', dataIndex: 'created_at', render: (time: string) => new Date(time).toLocaleString() },
+                { title: '级别', dataIndex: 'level' },
+                { title: '内容', dataIndex: 'message' },
+              ]}
+              dataSource={logs}
+              rowKey="id"
+            />
+          )}
         </Tabs.TabPane>
         <Tabs.TabPane tab="交易记录" key="trade">
-          <Table
-            columns={[
-              { title: '时间', dataIndex: 'created_at', render: (time: string) => new Date(time).toLocaleString() },
-              { title: '交易对', dataIndex: 'symbol' },
-              { title: '方向', dataIndex: 'side' },
-              { title: '价格', dataIndex: 'price' },
-              { title: '数量', dataIndex: 'amount' },
-            ]}
-            dataSource={trades}
-            rowKey="id"
-          />
+          {trades.length === 0 ? (
+            <Card>
+              <Empty
+                image={Empty.PRESENTED_IMAGE_SIMPLE}
+                description={
+                  <div>
+                    <Title level={4}>暂无交易记录</Title>
+                    <Paragraph style={{ color: '#666' }}>
+                      当策略执行交易后，交易记录将显示在这里
+                    </Paragraph>
+                  </div>
+                }
+              />
+            </Card>
+          ) : (
+            <Table
+              columns={[
+                { title: '时间', dataIndex: 'created_at', render: (time: string) => new Date(time).toLocaleString() },
+                { title: '交易对', dataIndex: 'symbol' },
+                { title: '方向', dataIndex: 'side' },
+                { title: '价格', dataIndex: 'price' },
+                { title: '数量', dataIndex: 'amount' },
+              ]}
+              dataSource={trades}
+              rowKey="id"
+            />
+          )}
         </Tabs.TabPane>
       </Tabs>
     </Spin>
